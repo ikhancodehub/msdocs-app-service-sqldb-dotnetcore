@@ -30,9 +30,7 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: |
-        echo "Publishing to path: ${{env.DOTNET_ROOT}}/myapp"
-        dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
 
       - name: Install dotnet-ef tool
