@@ -13,6 +13,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+      DOTNET_NOLOGO: 1
+
     steps:
       - uses: actions/checkout@v4
 
@@ -28,11 +32,11 @@ jobs:
       - name: dotnet publish
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
-      - name:  dotnet install ef
+      - name: Install dotnet-ef tool
         run: dotnet tool install -g dotnet-ef
-        
-      - name: dotnet bundle migration  
-        run: dotnet ef migrations bundle --runtime linux-x64 -p DotNetCoreSqlDb/DotNetCoreSqlDb.csproj -o ${{env.DOTNET_ROOT}}/myapp/migrate
+
+      - name: Run migrations
+        run: dotnet ef migrations bundle --runtime linux-x64 -p DotNetCoreSqlDb/DotNetCoreSqlDb.csproj
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
