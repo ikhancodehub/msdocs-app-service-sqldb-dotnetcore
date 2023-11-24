@@ -35,11 +35,9 @@ jobs:
       - name: Install dotnet-ef tool
         run: dotnet tool install -g dotnet-ef --version 7.0
        
-      - name: Create Migrate Directory
-        run: mkdir -p $HOME/site/wwwroot/migrate
-
+      
       - name: Run migrations
-        run: dotnet ef migrations bundle --runtime linux-x64 -p DotNetCoreSqlDb/DotNetCoreSqlDb.csproj -o $HOME/site/wwwroot/migrate
+        run: dotnet ef migrations bundle --runtime linux-x64 -p DotNetCoreSqlDb/DotNetCoreSqlDb.csproj -o /home/site/wwwroot/migrate
         
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
