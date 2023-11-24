@@ -40,7 +40,7 @@ jobs:
         run: dotnet ef migrations bundle --runtime linux-x64 -p DotNetCoreSqlDb/DotNetCoreSqlDb.csproj
 
       - name: Create Migrate Directory
-      run: mkdir -p $HOME/site/wwwroot/migrate
+        run: mkdir -p $HOME/site/wwwroot/migrate
 
       - name: Copy Migrations Bundle
         run: cp -r $HOME/work/msdocs-app-service-sqldb-dotnetcore/msdocs-app-service-sqldb-dotnetcore/efbundle $HOME/site/wwwroot/migrate
